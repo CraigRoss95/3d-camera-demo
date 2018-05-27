@@ -6,8 +6,12 @@ public class cameraControler : MonoBehaviour {
 public Transform lookAt;
 public Transform camTransfrom;
 public float camSpeed;
+public float maxCamAngle;
+public float minCamAngle;
+public LayerMask playerMask;
 private float mouseX = 0.0f;
 private float mouseY = 0.0f;
+
 
 private Camera cam;
 private float tempDistance;
@@ -41,10 +45,10 @@ private float toWall;
 	}
 	void LateUpdate()
 	{
-		Debug.Log("can zoom = " + canZoom);
+		//Debug.Log("can zoom = " + canZoom);
 		mouseX = mouseX + Input.GetAxis("Mouse X") * sensitivityX;
 		mouseY = mouseY + Input.GetAxis("Mouse Y") * sensitivityY;
-		mouseY = Mathf.Clamp (mouseY, -20, 75);
+		mouseY = Mathf.Clamp (mouseY, minCamAngle, maxCamAngle);
 	//zooming in or out if the camera is not aggenst a wall
 	if( toWall >= userZoom)
 	{
@@ -73,15 +77,14 @@ private float toWall;
 	private void Zoom()
 	{
 		RaycastHit hit;
-		if(Physics.Raycast(lookAt.transform.position,lookAt.transform.TransformDirection(Vector3.forward), out hit, maxZoom))
+		if(Physics.Raycast(lookAt.transform.position, lookAt.transform.TransformDirection(Vector3.forward), out hit, maxZoom, playerMask.value))
 		{
 			toWall = hit.distance;
 			if(hit.distance < userZoom)
 			{
 				//Debug.Log(" hit distance: " + hit.distance);
 				distance = distance - camSpeed;
-				Mathf.Clamp(distance, 1.0f, hit.distance);
-				distance = hit.distance;
+				distance = hit.distance -1;
 			}
 			else 
 			{

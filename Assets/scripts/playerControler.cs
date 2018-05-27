@@ -34,7 +34,7 @@ public class playerControler : MonoBehaviour {
 
 	void Start()
 	{
-
+	
 	}
 
 	void Update()
@@ -146,7 +146,7 @@ public class playerControler : MonoBehaviour {
 		{
 			grounded = false;
 		}
-		Debug.Log("grounded = " + grounded);
+
 
 	}
 	
@@ -172,7 +172,7 @@ public class playerControler : MonoBehaviour {
 		if(Physics.Raycast(transform.position, forward, out infront, 0.6f ,ground))
 		{
 			wallFound = true;
-			Debug.Log("infront = " + infront.normal);
+			//Debug.Log("infront = " + infront.normal);
 		}
 		else if(Physics.Raycast(transform.position, forwardLeft, out infront, 0.6f ,ground))
 		{
@@ -186,7 +186,8 @@ public class playerControler : MonoBehaviour {
 		else if(Physics.Raycast(transform.position+ new Vector3(0,height - heightBuffer, 0), forward, out infront, 0.6f ,ground))
 		{
 			wallFound = true;
-			Debug.Log("infront = " + infront.normal);
+
+
 		}
 		else if(Physics.Raycast(transform.position + new Vector3(0,height + heightBuffer, 0), forwardLeft, out infront, 0.6f ,ground))
 		{
@@ -200,7 +201,7 @@ public class playerControler : MonoBehaviour {
 		else if(Physics.Raycast(transform.position+ new Vector3(0,-height - heightBuffer, 0), forward + new Vector3(0.0f,30.0f,0.0f), out infront, 0.3f ,ground))
 		{
 			wallFound = true;
-			Debug.Log("infront = " + infront.normal);
+
 			Debug.DrawLine( transform.position+ new Vector3(0,-height - heightBuffer, 0),infront.point, Color.red);
 		}
 		else if(Physics.Raycast(transform.position + new Vector3(0,-height - heightBuffer, 0), forwardLeft+ new Vector3(0.0f,30.0f,0.0f), out infront, 0.3f ,ground))
