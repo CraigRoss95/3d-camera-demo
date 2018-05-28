@@ -13,23 +13,17 @@ private float mouseX = 0.0f;
 private float mouseY = 0.0f;
 
 
-private Camera cam;
 private float tempDistance;
 private float distance = 10.0f;
 private float sensitivityX = 4.0f;
 private float sensitivityY = 1.0f;
-private float distanceOffset = 0.0f;
-private float zoomSpeed = 0.1f;
 private float maxZoom = 10.0f;
-private bool canZoom;
 private float userZoom;
 private float toWall;
 
 	// Use this for initialization
 	void Start () {
-		canZoom = true;
 		camTransfrom = transform;
-		cam = Camera.main;
 		distance = maxZoom;
 		userZoom = maxZoom;
 		toWall = 11.0f;
@@ -45,16 +39,15 @@ private float toWall;
 	}
 	void LateUpdate()
 	{
-		//Debug.Log("can zoom = " + canZoom);
-		mouseX = mouseX + Input.GetAxis("Mouse X") * sensitivityX;
-		mouseY = mouseY + Input.GetAxis("Mouse Y") * sensitivityY;
-		mouseY = Mathf.Clamp (mouseY, minCamAngle, maxCamAngle);
-	//zooming in or out if the camera is not aggenst a wall
+	GetInput();
+
+	CalcAutoAngle();
 	if( toWall >= userZoom)
 	{
 		userZoom = userZoom - (Input.GetAxis("Mouse ScrollWheel"));
-		userZoom = Mathf.Clamp(userZoom, 1.0f, 10.0f);
+		
 		distance = userZoom;
+		userZoom = Mathf.Clamp(userZoom, 1.0f, 10.0f);
 	}
 	//zooming in while the camera is agenst a wall
 	else if(toWall < userZoom && Input.GetAxis("Mouse ScrollWheel") > 0)
@@ -74,6 +67,29 @@ private float toWall;
 		transform.LookAt(lookAt);
 		lookAt.transform.LookAt(transform);
 	}
+	void GetInput()
+	{
+		mouseX = mouseX + Input.GetAxis("Mouse X") * sensitivityX;
+		mouseY = mouseY + Input.GetAxis("Mouse Y") * sensitivityY;
+		mouseY = Mathf.Clamp (mouseY, minCamAngle, maxCamAngle);
+	}
+	void CalcAutoAngle()
+	{
+		RaycastHit cameraAngleHit;
+		if(Physics.Raycast(lookAt.transform.position, new Vector3(camTransfrom.position.x -lookAt.position.x, 0, camTransfrom.position.z -lookAt.position.z), out cameraAngleHit, distance + 0.5f ,playerMask))
+		{
+			Debug.DrawLine(lookAt.transform.position, cameraAngleHit.point, Color.blue);
+			if(Vector3.Angle(cameraAngleHit.normal,Vector3.down) > 110)
+			{
+				minCamAngle = 180 - Vector3.Angle(cameraAngleHit.normal,Vector3.down) ; 
+				Debug.Log("down angle " +minCamAngle);
+			}
+		}
+		else
+		{
+			minCamAngle = 0;
+		}
+	}
 	private void Zoom()
 	{
 		RaycastHit hit;
@@ -83,8 +99,7 @@ private float toWall;
 			if(hit.distance < userZoom)
 			{
 				//Debug.Log(" hit distance: " + hit.distance);
-				distance = distance - camSpeed;
-				distance = hit.distance -1;
+				distance = hit.distance;
 			}
 			else 
 			{

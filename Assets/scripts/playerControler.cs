@@ -183,17 +183,17 @@ public class playerControler : MonoBehaviour {
 			wallFound = true;
 		}
 
-		else if(Physics.Raycast(transform.position+ new Vector3(0,height - heightBuffer, 0), forward, out infront, 0.6f ,ground))
+		else if(Physics.Raycast(transform.position+ new Vector3(0,height - heightBuffer, 0), forward, out infront, 0.5f ,ground))
 		{
 			wallFound = true;
 
 
 		}
-		else if(Physics.Raycast(transform.position + new Vector3(0,height + heightBuffer, 0), forwardLeft, out infront, 0.6f ,ground))
+		else if(Physics.Raycast(transform.position + new Vector3(0,height + heightBuffer, 0), forwardLeft, out infront, 0.5f ,ground))
 		{
 			wallFound = true;
 		}
-		else if(Physics.Raycast(transform.position+ new Vector3(0,height - heightBuffer, 0), forwardRight, out infront, 0.6f ,ground))
+		else if(Physics.Raycast(transform.position+ new Vector3(0,height - heightBuffer, 0), forwardRight, out infront, 0.5f ,ground))
 		{
 			wallFound = true;
 		}
