@@ -8,6 +8,7 @@ public Transform camTransfrom;
 public float camSpeed;
 public float maxCamAngle;
 public float minCamAngle;
+public float angleSpeed;
 public LayerMask playerMask;
 private float mouseX = 0.0f;
 private float mouseY = 0.0f;
@@ -20,6 +21,7 @@ private float sensitivityY = 1.0f;
 private float maxZoom = 10.0f;
 private float userZoom;
 private float toWall;
+private RaycastHit angleHit;
 
 	// Use this for initialization
 	void Start () {
@@ -37,17 +39,17 @@ private float toWall;
 
 	
 	}
-	void LateUpdate()
+	void FixedUpdate()
 	{
+		Zoom();
 	GetInput();
 
-	CalcAutoAngle();
 	if( toWall >= userZoom)
 	{
-		userZoom = userZoom - (Input.GetAxis("Mouse ScrollWheel"));
+		userZoom = userZoom - (Input.GetAxis("Mouse ScrollWheel")) * 4;
 		
 		distance = userZoom;
-		userZoom = Mathf.Clamp(userZoom, 1.0f, 10.0f);
+		userZoom = Mathf.Clamp(userZoom, 2.0f, 12.0f);
 	}
 	//zooming in while the camera is agenst a wall
 	else if(toWall < userZoom && Input.GetAxis("Mouse ScrollWheel") > 0)
@@ -58,38 +60,41 @@ private float toWall;
 
 
 	//Debug.Log("userzoom = " + userZoom);
-		Zoom();
+		
 		Vector3 dir = new Vector3 (0, 0, -distance);
 		Quaternion rotation = Quaternion.Euler(mouseY, mouseX, 0);
 
-		camTransfrom.position = Vector3.MoveTowards(camTransfrom.position, lookAt.position + rotation*dir, camSpeed * Time.deltaTime );
+		camTransfrom.position = Vector3.MoveTowards(camTransfrom.position, lookAt.position + rotation*dir, 1 );
 
 		transform.LookAt(lookAt);
 		lookAt.transform.LookAt(transform);
 	}
 	void GetInput()
-	{
+	{	
+		
 		mouseX = mouseX + Input.GetAxis("Mouse X") * sensitivityX;
-		mouseY = mouseY + Input.GetAxis("Mouse Y") * sensitivityY;
-		mouseY = Mathf.Clamp (mouseY, minCamAngle, maxCamAngle);
-	}
-	void CalcAutoAngle()
-	{
-		RaycastHit cameraAngleHit;
-		if(Physics.Raycast(lookAt.transform.position, new Vector3(camTransfrom.position.x -lookAt.position.x, 0, camTransfrom.position.z -lookAt.position.z), out cameraAngleHit, distance + 0.5f ,playerMask))
+		
+		if (Physics.Raycast(lookAt.transform.position, camTransfrom.position- lookAt.transform.position, out angleHit, distance + 2,playerMask))
 		{
-			Debug.DrawLine(lookAt.transform.position, cameraAngleHit.point, Color.blue);
-			if(Vector3.Angle(cameraAngleHit.normal,Vector3.down) > 110)
+			
+			if ((Vector3.Angle(angleHit.normal,Vector3.down) > 110))
 			{
-				minCamAngle = 180 - Vector3.Angle(cameraAngleHit.normal,Vector3.down) ; 
-				Debug.Log("down angle " +minCamAngle);
+				mouseY = mouseY + 1;
+			}
+			else
+			{
+				mouseY = mouseY + Input.GetAxis("Mouse Y") * sensitivityY;
 			}
 		}
 		else
 		{
-			minCamAngle = 0;
-		}
+			mouseY = mouseY + Input.GetAxis("Mouse Y") * sensitivityY;
+			
+		}		
+			mouseY = Mathf.Clamp (mouseY, minCamAngle, maxCamAngle);
+		
 	}
+
 	private void Zoom()
 	{
 		RaycastHit hit;
