@@ -74,7 +74,7 @@ public class playerControler : MonoBehaviour {
 	void Rotate()
 	{
 		targetRotation = Quaternion.Euler(0,angle,0);
-		transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, turningSpeed* Time.deltaTime);
+		transform.rotation = targetRotation;
 
 
 		playerBody.transform.eulerAngles = new Vector3 ( - Vector3.Angle(hitInfo.normal, transform.forward) +90,angle, 0.0f);

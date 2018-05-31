@@ -10,6 +10,7 @@ public float maxCamAngle;
 public float minCamAngle;
 public float angleSpeed;
 public LayerMask playerMask;
+public float zoomSpeed;
 private float mouseX = 0.0f;
 private float mouseY = 0.0f;
 
@@ -48,7 +49,7 @@ private RaycastHit angleHit;
 	{
 		userZoom = userZoom - (Input.GetAxis("Mouse ScrollWheel")) * 4;
 		
-		distance = userZoom;
+				distance = Mathf.Lerp(distance,userZoom, zoomSpeed * Time.deltaTime);
 		userZoom = Mathf.Clamp(userZoom, 2.0f, 12.0f);
 	}
 	//zooming in while the camera is agenst a wall
@@ -60,7 +61,10 @@ private RaycastHit angleHit;
 
 
 	//Debug.Log("userzoom = " + userZoom);
-		
+		if(distance < 1)
+		{
+			distance = 1;
+		}
 		Vector3 dir = new Vector3 (0, 0, -distance);
 		Quaternion rotation = Quaternion.Euler(mouseY, mouseX, 0);
 
@@ -108,7 +112,7 @@ private RaycastHit angleHit;
 			}
 			else 
 			{
-				distance = userZoom;
+						distance = Mathf.Lerp(distance,userZoom, zoomSpeed * Time.deltaTime);
 			}
 		}
 		else 

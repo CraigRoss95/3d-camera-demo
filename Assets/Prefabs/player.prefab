@@ -635,7 +635,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
   velocity: 7
-  turningSpeed: 100
+  turningSpeed: 50
   ground:
     serializedVersion: 2
     m_Bits: 512
