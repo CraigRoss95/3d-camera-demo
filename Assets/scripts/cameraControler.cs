@@ -13,6 +13,7 @@ public LayerMask playerMask;
 public float zoomSpeed;
 private float mouseX = 0.0f;
 private float mouseY = 0.0f;
+public bool inverse;
 
 
 private float tempDistance;
@@ -87,12 +88,26 @@ private RaycastHit angleHit;
 			}
 			else
 			{
-				mouseY = mouseY + Input.GetAxis("Mouse Y") * sensitivityY;
+				if(inverse ==  true)
+				{
+					mouseY = mouseY - Input.GetAxis("Mouse Y") * sensitivityY;
+				}
+				else
+				{
+					mouseY = mouseY + Input.GetAxis("Mouse Y") * sensitivityY;
+				}
+				
 			}
 		}
 		else
 		{
-			mouseY = mouseY + Input.GetAxis("Mouse Y") * sensitivityY;
+			if(inverse == true)
+			{
+				mouseY = mouseY - Input.GetAxis("Mouse Y") * sensitivityY;
+			}
+			else{
+				mouseY = mouseY + Input.GetAxis("Mouse Y") * sensitivityY;
+			}
 			
 		}		
 			mouseY = Mathf.Clamp (mouseY, minCamAngle, maxCamAngle);
