@@ -35,13 +35,7 @@ private RaycastHit angleHit;
 
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-
-	
-	}
-	void FixedUpdate()
+	void LateUpdate()
 	{
 		Zoom();
 	GetInput();

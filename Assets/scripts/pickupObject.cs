@@ -33,7 +33,7 @@ public
 	void OnTriggerStay(Collider thing)
 	{
 
-			if(Input.GetButtonDown("Use") && thing.gameObject.tag == "item")
+			if(Input.GetButtonDown("Pickup/Drop") && thing.gameObject.tag == "item")
 			{
 				if(player.GetComponent<inventory>().currItemID != 0 )
 				{

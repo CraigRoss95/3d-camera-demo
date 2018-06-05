@@ -25,11 +25,15 @@ public class inventory : MonoBehaviour {
 	}
 	void CheckDropItem()
 	{
-		if(Input.GetButtonDown("Use") && currItemID != 0 && pickupZone.GetComponent<pickupObject>().pickingUp == false)
+		if(Input.GetButtonDown("Pickup/Drop") && currItemID != 0 && pickupZone.GetComponent<pickupObject>().pickingUp == false)
 		{
 			DropItem();
 
 		}
+	}
+	public int GetItemID()
+	{
+		return currItemID;
 	}
 
 	public void DropItem()

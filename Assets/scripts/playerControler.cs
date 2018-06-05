@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -45,9 +45,9 @@ public class playerControler : MonoBehaviour {
 		CalculateForward();
 		CalculateGroundAngle();
 		CheckGround();
-		CastCircle();
 		ApplyGravity();
-		Lines();
+		FindWall();
+		DebugLines();
 
 		if(Mathf.Abs(input.x) < 1 && Mathf.Abs(input.y) < 1)return;
 
@@ -57,12 +57,14 @@ public class playerControler : MonoBehaviour {
 
 	}
 
+	//sets input for every update
 	void GetInput()
 	{
 		input.x = Input.GetAxisRaw("Horizontal");
 		input.y = Input.GetAxisRaw("Vertical");
 	}
 
+	// get the direction the player is going in relation to the camera
 	void CalculateDirection()
 	{
 		angle = Mathf.Atan2(input.x, input.y);
@@ -70,7 +72,7 @@ public class playerControler : MonoBehaviour {
 		angle = angle + cam.eulerAngles.y;
 
 	}
-
+	//rotates the player when the direction changes
 	void Rotate()
 	{
 		targetRotation = Quaternion.Euler(0,angle,0);
@@ -84,7 +86,7 @@ public class playerControler : MonoBehaviour {
 	
 
 	}
-
+	// moves the charicter forward
 	void Move()
 	{if(groundAngle >= maxAngle) return;
 		if(wallFound == false)
@@ -92,7 +94,7 @@ public class playerControler : MonoBehaviour {
 		transform.position = transform.position +(forward * velocity * Time.deltaTime);
 		}
 	}
-
+	// finds which way is forward
 	void CalculateForward()
 	{
 		if(!grounded)
@@ -107,6 +109,7 @@ public class playerControler : MonoBehaviour {
 		
 
 	}
+	//this checks the ground and sets the ground angle
 	void CalculateGroundAngle()
 	{
 		if(!grounded)
@@ -132,6 +135,7 @@ public class playerControler : MonoBehaviour {
 			groundAngle = Vector3.Angle(hitInfo.normal, -transform.right);
 		}
 	}
+	//this part checks to see if the player is grounded
 	void CheckGround()
 	{
 		if(Physics.Raycast(transform.position, -Vector3.up, out hitInfo, height + heightBuffer, ground))
@@ -149,7 +153,7 @@ public class playerControler : MonoBehaviour {
 
 
 	}
-	
+	//if the player not grounded then fall
 	void ApplyGravity()
 	{
 		if(!grounded)
@@ -158,17 +162,16 @@ public class playerControler : MonoBehaviour {
 		}
 	}
 	
-	void CastCircle()
-	{
 
-	}
-
-	void Lines()
+	void DebugLines()
 	{
 		Debug.DrawLine(transform.position,transform.position+ forward *height * 2, Color.blue);
 		Debug.DrawLine(transform.position,transform.position +  forwardLeft *height * 2, Color.red);
 		Debug.DrawLine(transform.position,transform.position +  forwardRight *height * 2, Color.red);
 		//Debug.DrawLine(transform.position, transform.position - Vector3.up * height, Color.green);
+	}
+	void FindWall()
+	{	//mid checks
 		if(Physics.Raycast(transform.position, forward, out infront, 0.6f ,ground))
 		{
 			wallFound = true;
@@ -197,7 +200,6 @@ public class playerControler : MonoBehaviour {
 		{
 			wallFound = true;
 		}
-
 		else if(Physics.Raycast(transform.position+ new Vector3(0,-height - heightBuffer, 0), forward + new Vector3(0.0f,30.0f,0.0f), out infront, 0.3f ,ground))
 		{
 			wallFound = true;
