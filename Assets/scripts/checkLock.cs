@@ -29,8 +29,11 @@ public class checkLock : MonoBehaviour {
 		}
 		if (thing.gameObject.tag == "swapper" && Input.GetButtonDown("Use"))
 		{
-			Debug.Log("egg");
 			player.GetComponent<inventory>().SetCurrItemID(thing.gameObject.GetComponent<itemSwapper>().Swap(player.GetComponent<inventory>().GetItemID()));
+		}
+		if (thing.gameObject.tag == "toggler" && Input.GetButtonDown("Use"))
+		{
+			thing.gameObject.GetComponent<toggle>().Toggle();
 		}
 	}
 }

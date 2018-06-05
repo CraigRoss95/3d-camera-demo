@@ -3,10 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "summer game", "Assembly-CSharp.csproj", "{9FFE3744-DEEE-2175-E2FB-BB9F3323A8FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "summer game", "Assembly-CSharp-firstpass.csproj", "{4810C25F-3B93-D6C5-BAEF-D0A67CC4314B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "summer game", "Assembly-CSharp-Editor-firstpass.csproj", "{EB1A35F1-263C-8056-1358-3A36550B0C0B}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,14 +13,6 @@ Global
 		{9FFE3744-DEEE-2175-E2FB-BB9F3323A8FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9FFE3744-DEEE-2175-E2FB-BB9F3323A8FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9FFE3744-DEEE-2175-E2FB-BB9F3323A8FE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4810C25F-3B93-D6C5-BAEF-D0A67CC4314B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4810C25F-3B93-D6C5-BAEF-D0A67CC4314B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4810C25F-3B93-D6C5-BAEF-D0A67CC4314B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4810C25F-3B93-D6C5-BAEF-D0A67CC4314B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EB1A35F1-263C-8056-1358-3A36550B0C0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EB1A35F1-263C-8056-1358-3A36550B0C0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EB1A35F1-263C-8056-1358-3A36550B0C0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EB1A35F1-263C-8056-1358-3A36550B0C0B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

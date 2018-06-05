@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33780073024951070}
   - component: {fileID: 65098811669002020}
   - component: {fileID: 114812283640281746}
+  - component: {fileID: 114655056954846498}
   m_Layer: 10
   m_Name: pickup zone
   m_TagString: Untagged
@@ -638,7 +639,7 @@ MonoBehaviour:
   turningSpeed: 50
   ground:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 768
   maxAngle: 140
   playerBody: {fileID: 1454107145928120}
 --- !u!114 &114518462055357434
@@ -660,6 +661,18 @@ MonoBehaviour:
   ballDrop: {fileID: 1556893108097592, guid: 8077e0f1c22b8a142b3eb67a3db0f0f9, type: 2}
   pickingUp: 0
   pickupZone: {fileID: 1018527588357904}
+--- !u!114 &114655056954846498
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1018527588357904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1546adcb861a1d64eaaa2aa8752308db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1289141347080142}
 --- !u!114 &114812283640281746
 MonoBehaviour:
   m_ObjectHideFlags: 1

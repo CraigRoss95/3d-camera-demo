@@ -51,14 +51,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\itemSwapper.cs" />
      <Compile Include="Assets\scripts\cameraControler.cs" />
      <Compile Include="Assets\scripts\checkLock.cs" />
      <Compile Include="Assets\scripts\door.cs" />
      <Compile Include="Assets\scripts\dropedItem.cs" />
      <Compile Include="Assets\scripts\inventory.cs" />
+     <Compile Include="Assets\scripts\itemSwapper.cs" />
      <Compile Include="Assets\scripts\pickupObject.cs" />
      <Compile Include="Assets\scripts\playerControler.cs" />
+     <Compile Include="Assets\scripts\toggle.cs" />
+     <Compile Include="Assets\scripts\toggleWater.cs" />
  <Reference Include="UnityEditor.StandardEvents">
  <HintPath>I:/Users/ODIN/Documents/summer game/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>
@@ -239,6 +241,9 @@
  <Reference Include="Unity.Locator">
  <HintPath>I:/Program Files/Unity/Editor/Data/Managed/Unity.Locator.dll</HintPath>
  </Reference>
+ <Reference Include="Assembly-CSharp-firstpass">
+ <HintPath>I:/Users/ODIN/Documents/summer game/Library/ScriptAssemblies/Assembly-CSharp-firstpass.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>I:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
@@ -296,10 +301,6 @@
  <Reference Include="Boo.Lang">
  <HintPath>I:/Program Files/Unity/Editor/Data/MonoBleedingEdge/lib/mono/unity/Boo.Lang.dll</HintPath>
  </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{4810C25F-3B93-D6C5-BAEF-D0A67CC4314B}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
