@@ -2,36 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class lightSwitch : MonoBehaviour {
 
-public GameObject sun;
-public GameObject playerLightSource;
-public GameObject playerCamLightSource;
+private bool isOn;
+public GameObject light;
 
 	// Use this for initialization
-	void Start () {
-		
+	void Start () 
+	{
+		isOn = gameObject.GetComponent<toggle>().GetOn();
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		if(gameObject.GetComponent<toggle>().GetOn())
+	void Update () 
+	{
+		if( isOn != gameObject.GetComponent<toggle>().GetOn())
 		{
-			sun.SetActive(true);
-			playerLightSource.SetActive(false);
-			playerCamLightSource.SetActive(false);
-			RenderSettings.ambientIntensity = 1.0f;
-			RenderSettings.reflectionIntensity = 1.0f;
-
+			isOn = gameObject.GetComponent<toggle>().GetOn();
+			light.gameObject.GetComponent<theSun>().Switch();
 		}
-		else
-		{
-			sun.SetActive(false);
-			playerLightSource.SetActive(true);
-			playerCamLightSource.SetActive(true);
-			RenderSettings.ambientIntensity = 0.0f;
-			RenderSettings.reflectionIntensity = 0.0f;
-		}
-		
 	}
 }
