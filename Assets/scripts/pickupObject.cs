@@ -21,15 +21,6 @@ public
 		
 	}
 
-	void OnTriggerEnter(Collider thing)
-	{
-		Debug.Log("triggered");
-		if(thing.gameObject.tag == "item")
-		{
-			pickupText.text = "e";
-		}
-	}
-
 	void OnTriggerStay(Collider thing)
 	{
 

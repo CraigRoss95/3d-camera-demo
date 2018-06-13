@@ -9,7 +9,7 @@ public class playerControler : MonoBehaviour {
 	public LayerMask ground;
 
 	private bool grounded;
-	private float height = 1.0f;
+	private float height = 1.1f;
 	private float heightBuffer = 0.1f;
 	public float maxAngle = 160.0f;
 	public GameObject playerBody;
